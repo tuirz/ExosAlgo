@@ -102,10 +102,123 @@ console.log('fizzBuzz():', fizzBuzz());
 //Série 2
 //1
 function sommeChiffres(n) {
-    let somme = 0;
-    while (n > 0) {
-        somme += n % 10;
-        n = Math.floor(n / 10);
-    }
-    return somme;
+  return String(n).split('').reduce((somme, chiffre) => somme + Number(chiffre), 0);
 }
+
+//2
+function compterParPas(n, pas) {
+    let resultat = [];
+    for (let i = 0; i <= n; i += pas) {
+        resultat.push(i);
+    }
+    return resultat;
+}
+//3
+function verifierSigne(nombre) {
+    if (nombre > 0) {
+        return "Positif";
+    } else if (nombre < 0) {
+        return "Négatif";
+    } else {
+        return "Zéro";
+    }
+}
+//4
+function afficherLettres(mot, position) {
+    for (let lettre of mot) {
+        console.log(lettre);
+    }
+}
+//5
+function carre(n) {
+    return n * n;
+}
+//6
+function compteurLettre(mot) {
+    const motMinuscule = mot.toLowerCase();
+    let compteur = {};
+    for (let lettre of motMinuscule) {
+        if (compteur[lettre]) {
+            compteur[lettre]++;
+        } else {
+            compteur[lettre] = 1;
+        }
+    }
+    return compteur;
+}
+//7
+function sommeTableau(tab) {
+    return tab.reduce((somme, nombre) => somme + nombre, 0);
+}
+//8
+function filtrerPairs(tab) {
+    return tab.filter(nombre => nombre % 2 === 0);
+}
+//9
+function remplacerLettres(mot, lettre, nouvelleLettre) {
+    return mot.split(lettre).join(nouvelleLettre);
+}
+//10
+function fusionnerTableaux(tab1, tab2) {
+    return [...tab1, ...tab2];
+}
+//11
+function guessNumber(guess, secret) {
+       const random = Math.floor(Math.random() * 10) + 1;
+       while (guess !== secret) {
+           if (guess < secret) {
+               console.log("Plus grand !");
+           } else if (guess > secret) {
+               console.log("Plus petit !");
+           }
+           guess = Math.floor(Math.random() * 10) + 1;
+         }
+       console.log("Bravo ! Vous avez trouvé le nombre !");
+       return random;
+}
+//12
+function trierTableau(tab) {
+    for (let i = 0; i < tab.length; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < tab.length; j++) {
+            if (tab[j] < tab[minIndex]) {
+                minIndex = j;
+            }
+        }
+        [tab[i], tab[minIndex]] = [tab[minIndex], tab[i]];
+    }
+    return tab;
+}
+//13
+function convertirTemps(min) {
+    const heures = Math.floor(min / 60);
+    const minutes = min % 60;
+    return `${heures} heure(s) et ${minutes} minute(s)`;
+}
+//14
+function sontAnagrammes(mot1, mot2) {
+    const normalize = (mot) => mot.toLowerCase().split('').sort().join('');
+    return normalize(mot1) === normalize(mot2);
+}
+//15
+function convertisseurCelsiusFahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
+}
+
+console.log('sommeChiffres(1234):', sommeChiffres(1234));
+console.log('compterParPas(10, 2):', compterParPas(10, 2));
+console.log('verifierSigne(5):', verifierSigne(5));
+console.log('verifierSigne(-3):', verifierSigne(-3));
+console.log('verifierSigne(0):', verifierSigne(0));
+console.log('carre(6):', carre(6));
+console.log('compteurLettre("Abracadabra"):', compteurLettre("Abracadabra"));
+console.log('sommeTableau([4, 5, 6]):', sommeTableau([4, 5, 6]));
+console.log('filtrerPairs([1, 2, 3, 4, 5, 6]):', filtrerPairs([1, 2, 3, 4, 5, 6]));
+console.log('remplacerLettres("banane", "a", "o"):', remplacerLettres("banane", "a", "o"));
+console.log('fusionnerTableaux([1,2], [3,4]):', fusionnerTableaux([1,2], [3,4]));
+console.log('trierTableau([5, 2, 9, 1]):', trierTableau([5, 2, 9, 1]));
+console.log('convertirTemps(135):', convertirTemps(135));
+console.log('sontAnagrammes("chien", "niche"):', sontAnagrammes("chien", "niche"));
+console.log('sontAnagrammes("chien", "chat"):', sontAnagrammes("chien", "chat"));
+console.log('convertisseurCelsiusFahrenheit(0):', convertisseurCelsiusFahrenheit(0));
+console.log('convertisseurCelsiusFahrenheit(100):', convertisseurCelsiusFahrenheit(100));
